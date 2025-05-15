@@ -37,25 +37,26 @@ print(f)                                문자열 1개 출력하는 예제
 '''
 #sys.stdin = open("input.txt", "r")
 
-def dfs(node):
-    if node > n:
-        return 0
-    left = dfs(2*node)
-    right = dfs(2*node+1)
-    tree[node] += left + right
-    return tree[node]
+def dfs(graph, v):
 
-        
-
-t = int(input())
-for test_case in range(1, t+1):
+    if v * 2 > n: #자식이 없는 경우 예외
+        return graph[v]
     
+    if graph[v] == 0: #1000이하의 자연수이므로
+        left = dfs(graph, 2*v)
+        right = 0
+        if v * 2 + 1 <= n:
+            right = dfs(graph, 2*v+1)
+        graph[v] = left + right
+    return graph[v]
+
+T = int(input())
+# 여러개의 테스트 케이스가 주어지므로, 각각을 처리합니다.
+for test_case in range(1, T + 1):
     n, m, l = map(int, input().split())
-    tree = [0] * (n+1)
-
+    graph = [0] * (n+1)
     for _ in range(m):
-        leaf, val = map(int, input().split())
-        tree[leaf] = val
+        leaf, num = map(int, input().split())
+        graph[leaf] = num
     
-
-    print(f'#{test_case} {dfs(l)}')
+    print(f'#{test_case} {dfs(graph, l)}')
