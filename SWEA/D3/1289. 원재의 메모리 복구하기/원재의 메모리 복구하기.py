@@ -49,7 +49,6 @@ for test_case in range(1, t+1):
     for i in range(len(memory)):
         if memory[i] != first[i]: # memory = 0011 first = 0000
             count += 1
-            for j in range(i, len(memory)):
-                first[j] = memory[i]
+            first[i:] = [memory[i]] * (len(first)-i)
 
     print(f'#{test_case} {count}')
