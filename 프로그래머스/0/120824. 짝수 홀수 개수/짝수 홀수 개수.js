@@ -1,8 +1,8 @@
 function solution(num_list) {
-    var nums = num_list.filter(x => x % 2 === 0);
-    var nums2 = num_list.filter(x => x % 2 !== 0);
-    var answer = [];
-    answer.push(nums.length);
-    answer.push(nums2.length);
-    return answer;
+    return num_list.reduce(([even, odd], curr) => {
+        return [
+            curr % 2 === 0 ? even + 1 : even,
+            curr % 2 !== 0 ? odd + 1 : odd
+        ]
+    }, [0, 0]);
 }
