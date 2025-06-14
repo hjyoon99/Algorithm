@@ -1,9 +1,15 @@
 function solution(s) {
-    return s.split(/(\s)/)  // 공백도 배열에 포함
-        .map(word => {
-            if (word === " ") return word;  // 공백은 그대로
-            return [...word]
-                .map((ch, idx) => idx % 2 === 0 ? ch.toUpperCase() : ch.toLowerCase())
-                .join('');
-        }).join('');
+    var chunk = s.split(" ");
+    var sol = '';
+    for(let c of chunk){
+        var answer = '';
+        for(let i = 0; i < c.length; i++){
+            if (i % 2 === 0){
+                var tmp = c[i].toUpperCase();
+                answer += tmp;
+            }else answer += c[i].toLowerCase();
+        }
+        sol += answer + " ";
+    }
+    return sol.slice(0, sol.length-1);
 }
