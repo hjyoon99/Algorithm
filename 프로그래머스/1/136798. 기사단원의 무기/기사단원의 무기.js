@@ -11,5 +11,5 @@ function solution(number, limit, power) {
         answer.push(pow);
     }
     
-    return answer.reduce((sum, curr) => sum + curr);
+    return answer.reduce((sum, curr) => sum + curr, 0);
 }
