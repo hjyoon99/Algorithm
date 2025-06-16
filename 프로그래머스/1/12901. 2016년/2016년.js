@@ -1,5 +1,5 @@
 function solution(a, b) {
-    var weeks = ["THU", "FRI" ,"SAT", "SUN", "MON", "TUE", "WED", "THU"];
+    var weeks = ["THU", "FRI" ,"SAT", "SUN", "MON", "TUE", "WED"];
     var days = 0;
     if (a === 1){
         return weeks[b % 7];
