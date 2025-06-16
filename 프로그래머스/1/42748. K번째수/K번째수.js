@@ -1,9 +1,10 @@
 function solution(array, commands) {
     var answer = []
     for(let c of commands){
-        var arr = array.slice(c[0]-1, c[1]);
+        const [i, j, k] = c;
+        var arr = array.slice(i-1, j);
         arr.sort((a, b) => a - b);
-        answer.push(arr[c[2]-1])
+        answer.push(arr[k-1])
     }
     return answer;
 }
