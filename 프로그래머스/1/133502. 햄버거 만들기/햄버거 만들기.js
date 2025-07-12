@@ -8,7 +8,7 @@ function solution(ingredient) {
         if (JSON.stringify(sliced) === JSON.stringify(target)) {
             ingredient.splice(i, 4);  // 제거
             answer++;
-            i = Math.max(i - 3, 0);  // 이전으로 백트래킹
+            i = i - 3;  
         } else {
             i++;
         }
