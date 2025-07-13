@@ -5,8 +5,8 @@ function solution(ingredient) {
 
     while (i <= ingredient.length - 4) {
         const sliced = ingredient.slice(i, i + 4);
-        if (JSON.stringify(sliced) === JSON.stringify(target)) {
-            ingredient.splice(i, 4);  // 제거
+        if (sliced.join('') === target.join('')) {
+            ingredient.splice(i, 4); 
             answer++;
             i = i - 3;  
         } else {
