@@ -1,34 +1,28 @@
-# 컴퓨터의 수
-com  = int(input())
+# 2606 - 바이러스
 
-# 컴퓨터 쌍의 수 
-com_pair = int(input())
-
-# 바이러스 감염 컴퓨터
-count = 0
-
-# 인접 리스트
-coms = [[] for _ in range(com+1)]
-
-for _ in range(com_pair):
-    a, b = map(int, input().split())
-
-    coms[a].append(b)
-    coms[b].append(a)
-
-# 방문 여부 기록
-visited = [False] * (com + 1)
+import sys
 
 def dfs(v):
-    global count
-    visited[v] = True # 현재 컴퓨터 방문처리
-    count += 1 
+    visited[v] = True
 
-    for i in coms[v]: # 연결 컴퓨터 탐색
-        if not visited[i]: # 방문하지 않은 컴퓨터 있으면 재귀 호출
-            dfs(i)
+    for next in graph[v]:
+        if not visited[next]:
+            dfs(next)
+
+input = sys.stdin.readline
+
+com = int(input()) # 컴퓨터 수
+pair = int(input()) # 컴퓨터 쌍의 수
+
+graph = [[] for _ in range(com + 1)]
+visited = [False] * (com + 1)
+count = 0
+
+for i in range(pair):
+    n, m = map(int, input().split())
+    graph[n].append(m)
+    graph[m].append(n)
 
 dfs(1)
 
-# 1을 제외한 감염 컴퓨터 수 
-print(count-1)
+print(sum(visited) - 1)
