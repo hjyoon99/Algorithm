@@ -1,0 +1,40 @@
+# 4963 섬의 개수
+
+import sys
+sys.setrecursionlimit(10**6)
+
+def dfs(x, y):
+    if x <= -1 or x >= h or y <= -1 or y >= w:
+        return False
+    if graph[x][y] == 1:
+        graph[x][y] = 0
+        dfs(x + 1, y)
+        dfs(x - 1, y)
+        dfs(x, y + 1)
+        dfs(x, y - 1)
+        # 대각선
+        dfs(x + 1, y + 1)
+        dfs(x + 1, y - 1)
+        dfs(x - 1, y + 1)
+        dfs(x - 1, y - 1)
+        return True
+    return False
+
+while True:
+    w, h = list(map(int, input().split()))
+
+    if w == 0 and h == 0:
+        break
+
+    graph = []
+    result = 0
+    
+    for i in range(h):
+        height = list(map(int, input().split()))
+        graph.append(height)
+
+    for i in range(h):
+        for j in range(w):
+            if dfs(i, j) == True:
+                result += 1
+    print(result)
