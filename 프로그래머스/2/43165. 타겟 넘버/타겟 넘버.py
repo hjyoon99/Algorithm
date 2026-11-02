@@ -1,19 +1,10 @@
 def solution(numbers, target):
-    answer = 0
-    
-    def dfs(index, total):
-        nonlocal answer
+    def dfs(idx, total):
+        if idx == len(numbers):
+            return 1 if total == target else 0
         
-        if index == len(numbers):
-            if total == target:
-                answer += 1
-            return
+        plus = dfs(idx + 1, total + numbers[idx])
+        minus = dfs(idx + 1, total - numbers[idx])
         
-        # + 선택
-        dfs(index + 1, total + numbers[index])
-
-        # - 선택
-        dfs(index + 1, total - numbers[index])
-        
-    dfs(0, 0)
-    return answer
+        return plus + minus
+    return dfs(0, 0)
